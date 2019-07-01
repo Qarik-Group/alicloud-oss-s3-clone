@@ -1,0 +1,22 @@
+---
+meta:
+  name:    alicloud-oss-s3-clone
+  # fly -t ohio-cf login -c https://ci2.starkandwayne.com -n cfcommunity
+  target:  ohio-cf
+  url:     https://ci2.starkandwayne.com
+
+  git:
+    email:  ((git-commit-email))
+    name:   ((git-commit-name))
+
+  github:
+    owner:  starkandwayne
+    repo:   alicloud-oss-s3-clone
+    branch: master
+    private_key:  ((github-private-key))
+    access_token: ((github-access-token))
+
+  aws:
+    access_key: ((aws-cfcommunity-access))
+    secret_key: ((aws-cfcommunity-secret))
+

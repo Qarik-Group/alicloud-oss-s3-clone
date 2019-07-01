@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd bucc
+source <(bin/bucc env)
+
+bucc int --path /releases
