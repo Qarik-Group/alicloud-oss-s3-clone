@@ -19,3 +19,5 @@ bucc int | yj -y - | \
 
 cd uploads
 aliyun oss cp . oss://bucc-compiled-releases-us-east-1 --recursive --force
+
+aliyun oss ls oss://bucc-compiled-releases-us-east-1/bucc-compiled-releases/
