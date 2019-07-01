@@ -5,11 +5,17 @@ set -eu
 apt-get update
 apt-get install aliyun-cli yj
 
-cd bucc
-source <(bin/bucc env)
-touch vars.yml
+rm -rf bucc/state
+touch bucc/vars.yml
+source <(bucc/bin/bucc env)
 
-# bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not))'
-bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not)) | .[].url'
+(
+mkdir -p uploads/bucc-compiled-releases
+cd uploads/bucc-compiled-releases
+bucc int | yj -y - | \
+  jq -r '.releases | map(select(.name | test("cpi") | not)) | .[].url' | \
+  xargs -L1 wget
+)
 
-exit 1
+cd uploads
+aliyun oss cp . oss://bucc-compiled-releases-us-east-1 --recursive --force

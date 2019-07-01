@@ -32,6 +32,9 @@ groups:
   - name: (( grab meta.pipeline ))
     jobs:
     - bucc-clone-us-east-1
+  - name: bucc
+    jobs:
+    - bucc-clone-us-east-1
 
 jobs:
   - name: bucc-clone-us-east-1
