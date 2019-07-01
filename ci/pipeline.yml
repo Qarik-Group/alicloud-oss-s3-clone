@@ -31,10 +31,10 @@ meta:
 groups:
   - name: (( grab meta.pipeline ))
     jobs:
-    - bucc-clone
+    - bucc-clone-us-east-1
 
 jobs:
-  - name: bucc-clone
+  - name: bucc-clone-us-east-1
     public: true
     serial: true
     plan:
@@ -49,6 +49,10 @@ jobs:
         - name: bucc
         run:
           path: git/ci/scripts/bucc-release-urls
+      params:
+        ACCESS_KEY_ID: ((aliyun-access-key-id))
+        ACCESS_KEY_SECRET: ((aliyun-access-key-secret))
+        REGION: us-east-1
 
 resources:
   - name: git

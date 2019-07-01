@@ -9,4 +9,7 @@ cd bucc
 source <(bin/bucc env)
 touch vars.yml
 
-bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not))'
+# bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not))'
+bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not)) | .[].url'
+
+exit 1
