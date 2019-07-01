@@ -13,7 +13,7 @@ meta:
   image_resource:
     type: docker-image
     source:
-      name: starkandwayne/concourse
+      repository: starkandwayne/concourse
       tag: latest
 
   aws:
@@ -45,9 +45,10 @@ jobs:
         platform: linux
         image_resource: (( grab meta.image_resource ))
         inputs:
+        - name: git
         - name: bucc
         run:
-          path: ci/scripts/bucc-release-urls
+          path: git/ci/scripts/bucc-release-urls
 
 resources:
   - name: git

@@ -1,6 +1,13 @@
 #!/bin/bash
 
+if [[ ! -x yj ]]; then
+  wget https://github.com/sclevine/yj/releases/download/v4.0.0/yj-linux
+  mv yj-linux /usr/bin/yj
+  chmod +x /usr/bin/yj
+fi
+
 cd bucc
 source <(bin/bucc env)
+touch vars.yml
 
-bucc int --path /releases
+bucc int | yj -y - | jq -r '.releases | map(select(.name | test("cpi") | not))'
