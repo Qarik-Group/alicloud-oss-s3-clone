@@ -6,6 +6,10 @@ if [[ ! -x yj ]]; then
   chmod +x /usr/bin/yj
 fi
 
+apt-get update
+apt-get install aliyun-cli
+aws --version
+
 cd bucc
 source <(bin/bucc env)
 touch vars.yml
