@@ -1,14 +1,9 @@
 #!/bin/bash
 
-if [[ ! -x yj ]]; then
-  wget https://github.com/sclevine/yj/releases/download/v4.0.0/yj-linux
-  mv yj-linux /usr/bin/yj
-  chmod +x /usr/bin/yj
-fi
+set -eu
 
 apt-get update
-apt-get install aliyun-cli
-aws --version
+apt-get install aliyun-cli yj
 
 cd bucc
 source <(bin/bucc env)
